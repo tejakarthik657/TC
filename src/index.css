@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System — Technical Club KITSW (Dark-first)
+   All colors are HSL tokens. Never reference hex in components. */
+
+@layer base {
+  :root {
+    /* Core brand */
+    --background: 213 70% 11%;           /* #0a192f */
+    --foreground: 224 57% 86%;           /* #ccd6f6 */
+
+    --card: 222 47% 16%;                 /* #112240 */
+    --card-foreground: 224 57% 86%;
+
+    --popover: 222 47% 16%;
+    --popover-foreground: 224 57% 86%;
+
+    /* Accents */
+    --primary: 166 100% 70%;             /* Electric Teal #64ffda */
+    --primary-foreground: 222 84% 5%;    /* Deep for teal contrast */
+
+    --secondary: 0 84% 63%;              /* Logo Red #ef4444 */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 225 22% 62%;     /* #8892b0 */
+
+    --accent: 217 33% 18%;
+    --accent-foreground: 224 57% 86%;
+
+    --destructive: 0 84% 63%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 28% 20%;
+    --input: 217 28% 20%;
+    --ring: 166 100% 70%;
+
+    --radius: 0.8rem;
+
+    /* Sidebar (kept coherent) */
+    --sidebar-background: 213 70% 11%;
+    --sidebar-foreground: 224 57% 86%;
+    --sidebar-primary: 166 100% 70%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 47% 16%;
+    --sidebar-accent-foreground: 224 57% 86%;
+    --sidebar-border: 217 28% 20%;
+    --sidebar-ring: 166 100% 70%;
+
+    /* Decorative tokens */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 32px hsl(var(--primary) / 0.45);
+    --gradient-hero: radial-gradient(1000px 600px at var(--pointer-x,50%) var(--pointer-y,30%), hsl(var(--primary) / 0.12), transparent 40%);
+  }
+
+  /* Optional light theme for future */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 166 100% 35%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 0 84% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 166 100% 35%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { color-scheme: dark; }
+  body { @apply bg-background text-foreground antialiased; }
+}
+
+/* Utilities & component skins */
+@layer components {
+  .glass-card {
+    background: hsl(var(--card) / 0.68);
+    border: 1px solid hsl(var(--primary) / 0.18);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-elegant);
+  }
+  .glass-card:hover { box-shadow: var(--shadow-glow); }
+
+  .gradient-hero { background-image: var(--gradient-hero); }
+
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after {
+    content: "";
+    position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+    background: hsl(var(--primary)); transform: scaleX(0); transform-origin: 100% 100%;
+    transition: transform 300ms ease;
+  }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: 0% 100%; }
+
+  .hover-scale { transition: transform 200ms ease; }
+  .hover-scale:hover { transform: translateY(-2px) scale(1.03); }
+}
